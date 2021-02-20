@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/atotto/clipboard"
 	"github.com/nurali-techie/kurls/repo"
 )
 
@@ -16,5 +17,8 @@ func (c *Get) Run(kurlRepo repo.KurlRepo) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(kurl.Curl)
+	err = clipboard.WriteAll(kurl.Curl)
+	if err != nil {
+		fmt.Printf("error: paste curl to clipboard, %v\n", err)
+	}
 }

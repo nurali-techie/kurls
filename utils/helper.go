@@ -3,10 +3,16 @@ package utils
 import (
 	"database/sql"
 	"fmt"
+	"os"
 )
 
 func GetDatabase() *sql.DB {
-	db, err := sql.Open("sqlite3", "./kurls.db")
+	homeDir, err := os.UserHomeDir()
+	if err != nil {
+		panic(err)
+	}
+	dbFile := fmt.Sprintf("%s/.kurls/kurls.db", homeDir)
+	db, err := sql.Open("sqlite3", dbFile)
 	if err != nil {
 		panic(err)
 	}
