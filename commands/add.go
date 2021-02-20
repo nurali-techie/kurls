@@ -20,7 +20,7 @@ func NewAdd(key string, curl string) *Add {
 	}
 }
 
-func (c *Add) Run(kurlRepo repo.KurlRepo) {
+func (c *Add) Run(kurlRepo repo.KurlRepo, memRepo repo.MemoryRepo) {
 	kurl := domains.Kurl{
 		Key:  c.Key,
 		Curl: c.Curl,

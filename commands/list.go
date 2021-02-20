@@ -1,7 +1,6 @@
 package commands
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/nurali-techie/kurls/repo"
@@ -11,12 +10,13 @@ type List struct {
 	Filter string
 }
 
-func (c *List) Run(kurlRepo repo.KurlRepo) {
+func (c *List) Run(kurlRepo repo.KurlRepo, memRepo repo.MemoryRepo) {
 	keys, err := kurlRepo.List(c.Filter)
 	if err != nil {
 		log.Fatal(err)
 	}
-	for _, key := range keys {
-		fmt.Println(key)
+	memCmd := &Memory{
+		Keys: keys,
 	}
+	memCmd.Run(kurlRepo, memRepo)
 }

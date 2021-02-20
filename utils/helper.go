@@ -23,8 +23,16 @@ func InitDB(db *sql.DB) error {
 	if db == nil {
 		return fmt.Errorf("db not available")
 	}
+	err := createTable(db, "CREATE TABLE IF NOT EXISTS kurls (key TEXT PRIMARY KEY, curl TEXT)")
+	if err != nil {
+		return err
+	}
+	err = createTable(db, "CREATE TABLE IF NOT EXISTS memory (seq INTEGER PRIMARY KEY, key TEXT)")
+	return err
+}
 
-	stmt, err := db.Prepare("CREATE TABLE IF NOT EXISTS kurls (key TEXT PRIMARY KEY, curl TEXT)")
+func createTable(db *sql.DB, query string) error {
+	stmt, err := db.Prepare(query)
 	if err != nil {
 		return err
 	}

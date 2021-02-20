@@ -12,7 +12,7 @@ import (
 func main() {
 	var err error
 	if len(os.Args) < 2 {
-		commands.DefaultHelp.Run(nil)
+		commands.DefaultHelp.Run(nil, nil)
 	}
 
 	// setup db
@@ -27,10 +27,11 @@ func main() {
 
 	// setup repo
 	kurlRepo := repo.NewKurlRepo(db)
+	memRepo := repo.NewMemoryRepo(db)
 
 	// get cmd
 	cmd := utils.GetCommand(os.Args[1:])
 	if cmd != nil {
-		cmd.Run(kurlRepo)
+		cmd.Run(kurlRepo, memRepo)
 	}
 }

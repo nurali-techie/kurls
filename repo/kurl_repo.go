@@ -58,7 +58,7 @@ func (r *kurlRepo) List(filter string) ([]string, error) {
 	if filter == "" {
 		rows, err = r.db.Query("SELECT key from kurls")
 	} else {
-		query := "SELECT key from kurls WHERE key like '%" + filter + "%'"
+		query := "SELECT key from kurls WHERE key like '%" + filter + "%' ORDER BY key"
 		rows, err = r.db.Query(query)
 	}
 	if err != nil {

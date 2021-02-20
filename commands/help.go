@@ -13,7 +13,7 @@ type Help struct {
 	Message string
 }
 
-func (c *Help) Run(_ repo.KurlRepo) {
+func (c *Help) Run(_ repo.KurlRepo, _ repo.MemoryRepo) {
 	if c.Message == "" {
 		fmt.Println(helpText())
 	} else {
