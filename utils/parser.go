@@ -19,11 +19,11 @@ func GetCommand(args []string) commands.Command {
 	}
 
 	switch cmdName {
-	case "ls":
+	case "ls", "list":
 		return parseList(args[1:])
-	case "add":
+	case "ad", "add":
 		return parseAdd(args[1:])
-	case "get":
+	case "gt", "get":
 		return parseGet(args[1:])
 	default:
 		return &commands.Help{}

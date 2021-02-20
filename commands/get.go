@@ -20,5 +20,7 @@ func (c *Get) Run(kurlRepo repo.KurlRepo) {
 	err = clipboard.WriteAll(kurl.Curl)
 	if err != nil {
 		fmt.Printf("error: paste curl to clipboard, %v\n", err)
+		return
 	}
+	fmt.Println("success: curl copied to clipboard")
 }
